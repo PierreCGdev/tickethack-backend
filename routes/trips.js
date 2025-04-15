@@ -18,8 +18,10 @@ router.get('/:cityName', function(req, res) {
 router.get('/', function(req, res) {
     const departure = req.body.departure.trim();
     const arrival = req.body.arrival.trim();
-    const startDate = moment(req.body.date).startOf('day');
-    const endDate = moment(req.body.date).endOf('day');
+    const statLocal = moment(req.body.date).utc()
+    const enLocal = moment(req.body.date).utc()
+    const startDate = statLocal.startOf('day');
+    const endDate = enLocal.endOf('day');
     Trip.find({ 
         departure: { $regex: new RegExp(`^${departure}$`, "i") },
         arrival: { $regex: new RegExp(`^${arrival}$`, "i") },
@@ -35,7 +37,8 @@ router.get('/', function(req, res) {
             // const filteredData = data.filter((e) => e.date.toString().slice(0,9) === req.body.date.toString().slice(0,9))
             res.send({
                 result : true, 
-                trips: data})
+                trips: data,
+            })
         }else{
             res.send({result : false, error : "trip not found"})
         }
