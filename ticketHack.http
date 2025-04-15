@@ -1,5 +1,4 @@
 ### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=WebStorm
-
+GET http://localhost:3000/bookings HTTP/1.1
+Content-Type: application/json
 ###

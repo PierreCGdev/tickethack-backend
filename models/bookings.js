@@ -9,6 +9,7 @@ const bookingSchema = mongoose.Schema({
     cart: [cartSchema],
 });
 
-const Booking = mongoose.model('trips', bookingSchema);
+const Booking = mongoose.models.trips || mongoose.model('trips', bookingSchema);
+
 
 module.exports = Booking;

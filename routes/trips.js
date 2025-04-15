@@ -26,8 +26,8 @@ router.get('/', function(req, res) {
         departure: { $regex: new RegExp(`^${departure}$`, "i") },
         arrival: { $regex: new RegExp(`^${arrival}$`, "i") },
         date: {
-                    $gte: startDate,
-                    $lte: endDate,
+            $gte: startDate,
+            $lte: endDate,
                 }
         }
     )
