@@ -18,14 +18,12 @@ router.get('/:cityName', function(req, res) {
         })
     });
 
-//route utile
+//route utile pour récupérer la liste selon les critères 
 router.get('/', function(req, res) {
     const {departure, arrival, date} = req.body
     if(checkBody(req.body,['departure','arrival','date'])){
         const departureTrim = departure.trim();
         const arrivalTrim = arrival.trim();
-        // const startLocal = moment(date).utc().format()
-        // const endLocal = moment(date).utc().format()
         //converstion de la date format YYYY-MM-DD en complet et UTC
         const startDate = moment.utc(date).startOf('day');
         const endDate = moment.utc(date).endOf('day');
@@ -40,14 +38,10 @@ router.get('/', function(req, res) {
         )
         .then(
             data => {
-            if(data.length > 0){
                 res.send({
                     result : true, 
                     trips: data,
                 })
-            }else{
-                res.send({result : false, error : "trip not found"})
-            }
             }
         )
         }else{
