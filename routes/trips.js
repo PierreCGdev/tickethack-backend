@@ -19,7 +19,7 @@ router.get('/:cityName', function(req, res) {
     });
 
 //route utile pour récupérer la liste selon les critères 
-router.get('/', function(req, res) {
+router.post('/', function(req, res) {
     const {departure, arrival, date} = req.body
     if(checkBody(req.body,['departure','arrival','date'])){
         const departureTrim = departure.trim();
