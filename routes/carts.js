@@ -25,7 +25,7 @@ router.put('/:id', (req,res) => {
         if(data){
             data.valid = true
             data.save().then(Update =>{
-                res.json({result: true, data: Update})
+            res.json({result: true, data: Update})
             })
             
         }else{
@@ -59,7 +59,13 @@ router.get('/valid', (req,res) =>{
     .populate('dateId')
     .then(
         data => {
-            res.json(data)
+            countDown = []
+            data.forEach(element => {
+                const nowUtc = moment.utc()
+                const itemDate = moment(element.dateId.date)
+               countDown.push(itemDate.from(nowUtc)) 
+            });
+            res.json({countdown : countDown, data : data })
         }
     )
 })
