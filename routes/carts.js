@@ -37,12 +37,16 @@ router.put('/:id', (req,res) => {
 
 // pour récupérer tout les voyages : test uniquement
 router.get('/all', (req,res) =>{
-    Cart.find().populate('dateId').then( data => res.json(data))
+    Cart.find()
+    .populate('dateId')
+    .then( data => res.json(data))
 })
 
 //pour récupérer tout les voyages non validés : upload de la liste dans cart
 router.get('/invalid', (req,res) =>{
-    Cart.find({valid : false}).then(
+    Cart.find({valid : false})
+    .populate('dateId')
+    .then(
         data => {
             res.json(data)
         }
@@ -51,7 +55,9 @@ router.get('/invalid', (req,res) =>{
 
 //pour récupérer tout les voyages validés : upload de la liste dans booking
 router.get('/valid', (req,res) =>{
-    Cart.find({valid : true}).then(
+    Cart.find({valid : true})
+    .populate('dateId')
+    .then(
         data => {
             res.json(data)
         }
