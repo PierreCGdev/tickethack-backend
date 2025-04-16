@@ -70,7 +70,8 @@ router.delete('/:id', (req,res) => {
     if(id){
         Cart.deleteOne({dateId : id})
         .then(() => Cart.find()
-        .then({result : true}))
+        .then(() => res.json({result: true})))
+        
     }else{
         res.json({error : "id not found"})
     }
